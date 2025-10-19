@@ -10,7 +10,11 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 # Execute SQL statements using the execute() method on the cursor
-mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+try:
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+except mysql.connector.Error as err:
+    print(f"Error: {err}")
+
 mydb.commit()
 
 print("Database 'alx_book_store' created successfully!")
